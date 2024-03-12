@@ -25,7 +25,3 @@ dist-ssr
 
 # dotenv environment variables file
 .env
-.env.test
-REACT_APP_TR_ORGANIZATION=3ef7310f-135d-4869-b163-d286de4a2ba9
-REACT_APP_TR_DATASET=82eefb7f-5d0b-4122-8e6f-6fd657e5403a
-REACT_APP_AUTHORIZATION=tr-Ty6pILtYurl8oVHOWj1N32JNTJIjDS9R

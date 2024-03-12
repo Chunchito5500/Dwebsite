@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { searchChunks } from "./apiClient";
 import "./App.css";
 
 const products = [
@@ -54,26 +55,67 @@ const products = [
 ];
 
 function App() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [isSearching, setIsSearching] = useState(false); // New state to track search status
+
+  const handleSearchSubmit = async (e) => {
+    e.preventDefault();
+    setIsSearching(true); // Indicate search start
+    try {
+      const results = await searchChunks(searchTerm);
+      setSearchResults(results.score_chunks || []); // Assuming the API returns an object with a `score_chunks` array
+    } catch (error) {
+      console.error("Failed to fetch search results:", error);
+      setSearchResults([]); // Reset search results on error
+    } finally {
+      setIsSearching(false); // Indicate search end
+    }
+  };
+
   return (
     <>
       <div className="navbar bg-base-100 w-full">
-        {/* Left section */}
-        <div className="flex-1">
-          <a className="btn btn-ghost text-xl">Dwebsite</a>
-        </div>
-
-        {/* Center section with a larger search bar */}
-        <div className="flex-none">
-          <div className="form-control">
+        {/* Navbar content */}
+        <div className="flex-1 flex justify-center">
+          <form
+            onSubmit={handleSearchSubmit}
+            className="flex items-center gap-2"
+          >
             <input
               type="text"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search"
-              className="input input-bordered w-[500px]"
+              className="input input-bordered flex-1 max-w-md" // Adjusted width for responsiveness
             />
-          </div>
+            <button
+              type="submit"
+              className="btn btn-primary"
+              disabled={isSearching}
+            >
+              {isSearching ? "Searching..." : "Search"}
+            </button>
+          </form>
         </div>
-        <div className="flex-1"></div>
       </div>
+
+      {/* Search Results Section */}
+      {searchTerm.trim() !== "" && (
+        <div className="search-results mt-8">
+          {searchResults.length > 0 ? (
+            <div className="mx-auto px-4 py-8 lg:max-w-7xl">
+              {/* Results rendering */}
+            </div>
+          ) : (
+            !isSearching && (
+              <p className="text-center text-lg mt-4">
+                No results found for "{searchTerm}".
+              </p>
+            )
+          )}
+        </div>
+      )}
 
       {/* Shop Section */}
 
