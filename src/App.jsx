@@ -44,66 +44,64 @@ const products = [
   },
   {
     id: 5,
-    name: "Machined Mechanical Pencil",
+    name: "Pancake",
     href: "#",
-    price: "$35",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-04.jpg",
-    imageAlt:
-      "Hand holding black machined steel mechanical pencil with brass tip and top.",
+    price: "$3500",
+    imageSrc: "Pancake.jpeg",
+    imageAlt: "yum yum",
   },
-  // More products...
+  //  More products...
 ];
 
 function App() {
   return (
     <>
-      <div>
-        <div className="navbar bg-base-100 w-full">
-          <div className="flex-1">
-            <a className="btn btn-ghost text-xl">daisyUI</a>
-          </div>
+      <div className="navbar bg-base-100 w-full">
+        <div className="flex-1">
+          <a className="btn btn-ghost text-xl">Dwebsite</a>
+        </div>
 
-          {/* Search bar centered */}
-          <div className="flex-1 px-5 mx-2">
+        {/* Search Bar */}
+        <div className="flex-none">
+          <div className="flex-1 px-5">
             <div className="form-control">
               <input
                 type="text"
                 placeholder="Search"
-                className="input input-bordered"
+                className="input input-bordered w-full max-w-xs"
               />
             </div>
           </div>
+        </div>
 
-          {/* Right section for avatar and dropdown */}
-          <div className="flex-none gap-2">
-            <div className="dropdown dropdown-end">
-              <div tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                <div className="w-10 rounded-full">
-                  <img
-                    alt="Tailwind CSS Navbar component"
-                    src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-                  />
-                </div>
+        {/* Right section for avatar and dropdown */}
+        <div className="flex-1 justify-end flex">
+          <div className="dropdown dropdown-end">
+            <div tabIndex={0} className="btn btn-ghost btn-circle avatar">
+              <div className="w-10 rounded-full">
+                <img
+                  alt="Tailwind CSS Navbar component"
+                  src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+                />
               </div>
-              <ul
-                tabIndex={0}
-                className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
-              >
-                <li>
-                  <a className="justify-between">
-                    Profile
-                    <span className="badge">New</span>
-                  </a>
-                </li>
-                <li>
-                  <a>Settings</a>
-                </li>
-                <li>
-                  <a>Logout</a>
-                </li>
-              </ul>
             </div>
+            <ul
+              tabIndex={0}
+              className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+            >
+              <li>
+                <a className="justify-between">
+                  Profile
+                  <span className="badge">New</span>
+                </a>
+              </li>
+              <li>
+                <a>Settings</a>
+              </li>
+              <li>
+                <a>Logout</a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
