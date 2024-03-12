@@ -57,26 +57,28 @@ const products = [
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [isSearching, setIsSearching] = useState(false); // New state to track search status
+  const [isSearching, setIsSearching] = useState(false);
 
   const handleSearchSubmit = async (e) => {
     e.preventDefault();
-    setIsSearching(true); // Indicate search start
+    setIsSearching(true);
     try {
       const results = await searchChunks(searchTerm);
-      setSearchResults(results.score_chunks || []); // Assuming the API returns an object with a `score_chunks` array
+      setSearchResults(results.score_chunks || []);
     } catch (error) {
       console.error("Failed to fetch search results:", error);
-      setSearchResults([]); // Reset search results on error
+      setSearchResults([]);
     } finally {
-      setIsSearching(false); // Indicate search end
+      setIsSearching(false);
     }
   };
 
   return (
     <>
       <div className="navbar bg-base-100 w-full">
-        {/* Navbar content */}
+        <div className="flex-none">
+          <a className="btn btn-ghost text-xl">Dwebsite</a>
+        </div>
         <div className="flex-1 flex justify-center">
           <form
             onSubmit={handleSearchSubmit}
@@ -87,7 +89,7 @@ function App() {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search"
-              className="input input-bordered flex-1 max-w-md" // Adjusted width for responsiveness
+              className="input input-bordered flex-1 w-[500px]"
             />
             <button
               type="submit"

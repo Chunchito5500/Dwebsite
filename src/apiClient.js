@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiClient = axios.create({
-  baseURL: "https://api.trieve.ai",
+  baseURL: "api.trieve.ai/api/chunk",
   headers: {
     "Content-Type": "application/json",
     "TR-Organization": process.env.REACT_APP_TR_ORGANIZATION,
